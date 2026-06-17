@@ -14,7 +14,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+import os
 from torch.utils.data import DataLoader, TensorDataset
+
+# Ensure assets directory exists
+os.makedirs("assets", exist_ok=True)
 
 # Set random seed for reproducibility
 torch.manual_seed(42)
@@ -46,8 +50,8 @@ plt.xlabel("Days")
 plt.ylabel("Temperature (°C)")
 plt.legend()
 plt.grid(True)
-plt.savefig("data_sample.png")
-plt.close()
+plt.savefig("assets/data_sample.png")
+plt.show()
 
 # %% [markdown]
 # ## 2. Data Preparation for PyTorch
@@ -149,8 +153,8 @@ plt.xlabel("Epoch")
 plt.ylabel("MSE")
 plt.legend()
 plt.grid(True)
-plt.savefig("loss.png")
-plt.close()
+plt.savefig("assets/loss.png")
+plt.show()
 
 # %% [markdown]
 # ## 5. Evaluation and Results
@@ -200,8 +204,8 @@ plt.xlabel("Days")
 plt.ylabel("Temperature")
 plt.legend()
 plt.grid(True)
-plt.savefig("results.png")
-plt.close()
+plt.savefig("assets/results.png")
+plt.show()
 
 # %% [markdown]
 # ### Additional Error Analysis
@@ -209,7 +213,6 @@ plt.close()
 
 # %% [code]
 # Calculate errors
-error_raw = test_preds - test_actuals # actually raw is test_raw - test_actuals
 error_raw = test_raw - test_actuals
 error_corrected = test_preds - test_actuals
 
@@ -222,8 +225,8 @@ plt.xlabel("Error (°C)")
 plt.ylabel("Density")
 plt.legend()
 plt.grid(True)
-plt.savefig("error_dist.png")
-plt.close()
+plt.savefig("assets/error_dist.png")
+plt.show()
 
 plt.figure(figsize=(8, 8))
 plt.scatter(test_actuals, test_raw, alpha=0.1, label="Raw Forecast", color="red")
@@ -237,8 +240,8 @@ plt.xlabel("Actual Temperature (°C)")
 plt.ylabel("Forecasted Temperature (°C)")
 plt.legend()
 plt.grid(True)
-plt.savefig("scatter.png")
-plt.close()
+plt.savefig("assets/scatter.png")
+plt.show()
 
 # %% [markdown]
 # ## Conclusion
